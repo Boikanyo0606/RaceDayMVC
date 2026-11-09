@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Enroll in Race";
+}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white"><h4 class="mb-0">Confirm Enrollment</h4></div>
+            <div class="card-body">
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
+                <p>You are about to enroll in Event ID: <strong>@ViewBag.EventId</strong></p>
+                <p>Entry Fee: <strong>R150.00</strong></p>
+
+                <form asp-action="Enroll" method="post">
+                    <input type="hidden" name="eventId" value="@ViewBag.EventId" />
+                    <input type="hidden" name="categoryId" value="1" />
+                    <button type="submit" class="btn btn-success w-100">Confirm & Pay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

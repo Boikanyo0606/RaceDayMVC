@@ -1,0 +1,32 @@
+﻿@model List<RaceDayMVC.Models.RaceEvent>
+@{
+    ViewData["Title"] = "Upcoming Races";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Welcome to RaceDay</h1>
+    <p class="lead">Find your next challenge and register today!</p>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                @if (!string.IsNullOrEmpty(item.BannerUrl))
+                {
+                    <img src="@item.BannerUrl" class="card-img-top" alt="@item.EventName" style="height: 200px; object-fit: cover;">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@item.EventName</h5>
+                    <p class="card-text text-muted"><i class="bi bi-calendar"></i> @item.EventDate.ToString("dd MMM yyyy")</p>
+                    <p class="card-text"><i class="bi bi-geo-alt"></i> @item.Location</p>
+                    <p class="card-text">@item.Description</p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a asp-controller="Enrollments" asp-action="Enroll" asp-route-id="@item.EventID" class="btn btn-success w-100">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

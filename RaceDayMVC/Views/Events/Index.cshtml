@@ -1,0 +1,29 @@
+﻿@model List<RaceDayMVC.Models.RaceEvent>
+@{
+    ViewData["Title"] = "My Events";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>My Events</h2>
+    <a asp-action="Create" class="btn btn-primary">+ Create New Event</a>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@item.EventName</h5>
+                    <p class="card-text text-muted"><i class="bi bi-calendar"></i> @item.EventDate.ToString("dd MMM yyyy")</p>
+                    <p class="card-text"><i class="bi bi-geo-alt"></i> @item.Location</p>
+                    <p class="card-text">@item.Description</p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a asp-action="Edit" asp-route-id="@item.EventID" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.EventID" class="btn btn-sm btn-outline-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
